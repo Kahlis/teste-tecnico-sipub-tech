@@ -15,7 +15,7 @@ Uma API RESTful para gerenciar uma biblioteca de filmes com Go. A aplicação fo
 - RESTful API com respostas JSON
 - Health check para orquestração de containeres
 - Containerizado com Docker
-- Makefile para One-Click Deployment e tarefas de desenvolvimento
+- Makefile para implementação com um clique (one-click deployment) e tarefas de desenvolvimento
 - Comunicação interna utilizando Protocol Buffers gRPC
 - Testes mockados e e2e
 - Documentação via Swagger
@@ -31,7 +31,7 @@ Uma API RESTful para gerenciar uma biblioteca de filmes com Go. A aplicação fo
 
 ## Build
 ### Usando Docker/Podman
-1. **Clone the repository**
+1. **Clone o repositório**
    ```bash
    git clone https://github.com/Kahlis/teste-tecnico-sipub-tech.git
    cd teste-tecnico-sipub-tech
@@ -213,7 +213,7 @@ movies/
 │   └── util/              # Armazenamento de utilidades e erros
 ├── infra/persistence/     # Definição dos clientes e seus contratos
 ├── pkg/logger/            # Configuração de um logger centralizado
-├── seed/                  # Armazenamento da seed inicial do banco
+├── seed/                  # Armazenamento dos dados iniciais do banco
 └── routes/                # API route definitions
 ```
 ### root
