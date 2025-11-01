@@ -5,6 +5,7 @@ Uma API RESTful para gerenciar uma biblioteca de filmes com Go. A aplicação fo
 - [Features](#features)
 - [Pré-requisitos](#pré-requisitos)
 - [Build](#build)
+- [Rodando pela primeira vez](#rodando-pela-primeira-vez)
 - [Desenvolvimento](#desenvolvimento)
 - [API](#api)
 - [Estrutura](#estrutura)
@@ -15,7 +16,7 @@ Uma API RESTful para gerenciar uma biblioteca de filmes com Go. A aplicação fo
 - RESTful API com respostas JSON
 - Health check para orquestração de containeres
 - Containerizado com Docker
-- Makefile para One-Click Deployment e tarefas de desenvolvimento
+- Makefile para implementação com um clique (one-click deployment) e tarefas de desenvolvimento
 - Comunicação interna utilizando Protocol Buffers gRPC
 - Testes mockados e e2e
 - Documentação via Swagger
@@ -31,7 +32,7 @@ Uma API RESTful para gerenciar uma biblioteca de filmes com Go. A aplicação fo
 
 ## Build
 ### Usando Docker/Podman
-1. **Clone the repository**
+1. **Clone o repositório**
    ```bash
    git clone https://github.com/Kahlis/teste-tecnico-sipub-tech.git
    cd teste-tecnico-sipub-tech
@@ -76,6 +77,20 @@ make clean
 # Instala, verifica e linka todas as dependências do Go
 make deps
 ```
+
+## Rodando pela primeira vez
+Quando for rodar pela primeira vez, recomendo o seguinte fluxo
+```bash
+# Faz o build da aplicação
+make build
+
+# Roda a bateria de testes mockados
+make mock
+
+# Roda a bateria de testes em produção dentro do container
+make e2e
+```
+
 ## Desenvolvimento
 ### Configurando o ambiente de desenvolvimento
 1. **Instala, verifica e linka as dependências Go**
@@ -213,7 +228,7 @@ movies/
 │   └── util/              # Armazenamento de utilidades e erros
 ├── infra/persistence/     # Definição dos clientes e seus contratos
 ├── pkg/logger/            # Configuração de um logger centralizado
-├── seed/                  # Armazenamento da seed inicial do banco
+├── seed/                  # Armazenamento dos dados iniciais do banco
 └── routes/                # API route definitions
 ```
 ### root

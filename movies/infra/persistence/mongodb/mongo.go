@@ -144,5 +144,5 @@ func SeedFromJSON(ctx context.Context, collection *mongo.Collection) error {
 func GetSeedPath() string {
 	_, filename, _, _ := runtime.Caller(0)
 	dir := filepath.Dir(filename)
-	return filepath.Join(dir, "..", "..", "seed", "movies.json")
+	return filepath.Join(dir, "..", "..", "..", "seed", "movies.json")
 }
