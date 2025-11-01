@@ -5,6 +5,7 @@ Uma API RESTful para gerenciar uma biblioteca de filmes com Go. A aplicação fo
 - [Features](#features)
 - [Pré-requisitos](#pré-requisitos)
 - [Build](#build)
+- [Rodando pela primeira vez](#rodando-pela-primeira-vez)
 - [Desenvolvimento](#desenvolvimento)
 - [API](#api)
 - [Estrutura](#estrutura)
@@ -76,6 +77,20 @@ make clean
 # Instala, verifica e linka todas as dependências do Go
 make deps
 ```
+
+## Rodando pela primeira vez
+Quando for rodar pela primeira vez, recomendo o seguinte fluxo
+```bash
+# Faz o build da aplicação
+make build
+
+# Roda a bateria de testes mockados
+make mock
+
+# Roda a bateria de testes em produção dentro do container
+make e2e
+```
+
 ## Desenvolvimento
 ### Configurando o ambiente de desenvolvimento
 1. **Instala, verifica e linka as dependências Go**
