@@ -25,8 +25,8 @@
 
 ---
 ## Restrições do Projeto
-- [ ] O projeto deve ser desenvolvido utilizando **Go (Golang)**;
-- [ ] O banco de dados deve ser **MongoDB** ou **DynamoDB** (emulado via LocalStack, se aplicável);
-- [ ] O código-fonte deve ser versionado e disponibilizado em um **repositório público no GitHub**;
-- [ ] O link do repositório deve ser enviado por e-mail para **[rh@facilita.tech](mailto:rh@facilita.tech)** até **01/11/2025**;
-- [ ] O título do e-mail deve ser exatamente (em letras maiúsculas):  `TESTE TÉCNICO CONCLUIDO - SIPUB TECH`
+- [X] O projeto deve ser desenvolvido utilizando **Go (Golang)**;
+- [X] O banco de dados deve ser **MongoDB** ou **DynamoDB** (emulado via LocalStack, se aplicável);
+- [X] O código-fonte deve ser versionado e disponibilizado em um **repositório público no GitHub**;
+- [X] O link do repositório deve ser enviado por e-mail para **[rh@facilita.tech](mailto:rh@facilita.tech)** até **01/11/2025**;
+- [X] O título do e-mail deve ser exatamente (em letras maiúsculas):  `TESTE TÉCNICO CONCLUIDO - SIPUB TECH`
