@@ -1,0 +1,77 @@
+version: "3.8"
+services:
+  mongodb:
+    image: mongo:8.2.1
+    container_name: ${MONGO_CONTAINER_NAME}
+    environment:
+      MONGO_INITDB_DATABASE: ${MONGO_DB}
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_DB_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_DB_PASSWORD}
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - movies-network
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          'mongosh --quiet --username $MONGO_INITDB_ROOT_USERNAME --password $MONGO_INITDB_ROOT_PASSWORD --authenticationDatabase admin --eval ''db.adminCommand("ping").ok'' localhost:27017 || exit 1',
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  apigateway:
+    build:
+      context: ./apigateway
+      dockerfile: Dockerfile
+    container_name: apigateway
+    ports:
+      - "8080:${API_PORT}"
+    environment:
+      ENV: ${ENV}
+      LISTEN_PORT: ${API_PORT}
+      GRPC_SERVER: movies:${MOVIES_PORT}
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    networks:
+      - movies-network
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "curl -fs -o /dev/null -w '%{http_code}' http://localhost:${API_PORT}/v1/health | grep -q 200",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  movies:
+    build:
+      context: ./movies
+      dockerfile: Dockerfile
+    container_name: movies
+    environment:
+      ENV: ${ENV}
+      MONGO_DB: ${MONGO_DB}
+      MONGO_DB_USER: ${MONGO_DB_USER}
+      MONGO_DB_PASSWORD: ${MONGO_DB_PASSWORD}
+      MONGO_DB_COLLECTION: ${MONGO_DB_COLLECTION}
+      MONGO_DB_URI: ${MONGO_DB_URI}
+      LISTEN_PORT: ${MOVIES_PORT}
+      API_PORT: ${API_PORT}
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    networks:
+      - movies-network
+
+volumes:
+  mongodb_data:
+
+networks:
+  movies-network:
+    driver: bridge

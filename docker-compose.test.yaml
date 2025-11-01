@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  movies-test:
+    build:
+      context: ./movies
+      dockerfile: Dockerfile.test
+    container_name: movies-test
+    environment:
+      ENV: test
+      MONGO_DB: ${MONGO_DB}
+      MONGO_DB_USER: ${MONGO_DB_USER}
+      MONGO_DB_PASSWORD: ${MONGO_DB_PASSWORD}
+      MONGO_DB_COLLECTION: ${MONGO_DB_COLLECTION}
+      MONGO_DB_URI: ${MONGO_DB_URI}
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    networks:
+      - movies-network
+    command: >
+      sh -c "go test ./core/integration/test/... -v"
+
+networks:
+  movies-network:
+    driver: bridge
